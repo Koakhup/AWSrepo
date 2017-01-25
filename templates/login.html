@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title> Login/Register </title>
+  </head>
+  <body>
+    <div class="main_content">
+      <h1>Hello {{ session['id']}}</h1>
+      <form class="Logout" action="/delete" method="post">
+        <button type="submit" name="button"> Logout</button>
+      </form>
+    </div>
+    <form class="" action="/message" method="post">
+      <textarea name="message" rows="5" cols="100"></textarea>
+      <input type="submit" name="" value="Post Message">
+    </form><hr>
+    {% for message in messages %}
+      {% for comment in comments %}
+        {% if message.id == comments.message_id %}
+          <p>{{ comment.first_name}} says {{ comment[' comment'] }}<p>
+        {% endif %}
+      {% endfor %}
+    <block>
+        {{ message.first_name}} {{ message.last_name}} {{ message.created_at }}
+        {{ message['message']}}
+    </block>
+    <form action="comment/{{ message['id']}}" method ="post">
+      <textarea name="comment" rows="8" cols="80"></textarea>
+      <input type="submit" name="" value="Post Comment">
+    </form><hr>
+    {% endfor%}
+
+  </body>
+</html>
